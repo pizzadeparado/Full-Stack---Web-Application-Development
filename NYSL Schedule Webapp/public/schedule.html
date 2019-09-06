@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/541a4d8008.js"></script>
+  <link rel="stylesheet" href="main.css">
+  <link rel="shortcut icon" href="img/nysl_logo.png">
+  <link rel="apple-touch-icon" href="img/nysl_logo.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable"content="yes">
+  <title>Schedule | Northside Youth Soccer League</title>
+</head>
+
+<body>
+
+  <div class="d-flex flex-column" id="container-top">
+
+    <div id="gradient">
+      <h1>Northside Youth Soccer League</h1>
+    </div>
+
+    <div>
+      <nav class="navbar navbar-expand-md navbar-light" id="navigation">
+        <button class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Homepage</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="schedule.html">Schedule <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <img src="img/nysl_logo.png" width="100" height="100" alt="icon" id="logo">
+      </nav>
+    </div>
+
+  </div>
+
+  <div class="container" id="container-bottom">
+
+    <h3>Schedule</h3>
+    <p class="mb-4">Use the following filters to specify, for instance, which team you'd like to see or what time of the
+      day you'd like to attend.</p>
+    <div class="d-flex flex-row justify-content-around" id="filter-menu">
+      <div class="dropdown shadow-sm">
+        <button class="btn btn-secondary dropdown-toggle bg-white text-dark" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Month
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">September</a>
+          <a class="dropdown-item" href="#">October</a>
+        </div>
+      </div>
+      <div class="dropdown shadow-sm">
+        <button class="btn btn-secondary dropdown-toggle bg-white text-dark" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Team
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">U1</a>
+          <a class="dropdown-item" href="#">U2</a>
+          <a class="dropdown-item" href="#">U3</a>
+          <a class="dropdown-item" href="#">U4</a>
+          <a class="dropdown-item" href="#">U5</a>
+          <a class="dropdown-item" href="#">U6</a>
+        </div>
+      </div>
+      <div class="dropdown shadow-sm">
+        <button class="btn btn-secondary dropdown-toggle bg-white text-dark" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">AJ Katzenmaier</a>
+          <a class="dropdown-item" href="#">Greenbay</a>
+          <a class="dropdown-item" href="#">Howard A Yeager</a>
+          <a class="dropdown-item" href="#">Marjorie P Hart</a>
+          <a class="dropdown-item" href="#">North</a>
+          <a class="dropdown-item" href="#">South</a>
+        </div>
+      </div>
+      <div class="dropdown shadow-sm">
+        <button class="btn btn-secondary dropdown-toggle bg-white text-dark" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Time
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Morning</a>
+          <a class="dropdown-item" href="#">Afternoon</a>
+          <a class="dropdown-item" href="#">Evening</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="schedule-table">
+        <ul class="list-group">
+            <li v-for="(match, index) in gameInfo"
+                class="list-group-item border-dark d-flex text-center align-items-center">
+                <span class="flex-shrink text-center">{{  match.day + '/' + match.month + ' ' + match.time }}</span>
+                <span class="w-50">{{ match.name }}</span>
+                <span>
+                  <a class="mostrar-portrait" id="btn-maps" v-bind:href="match.url">{{ match.location }}</a>
+                  <a class="mostrar-landscape btn-estadio-class" v-bind:id="'btn-location' + index" v-on:click="selectLocation(match.url, index)">{{ match.location }}</a>
+                </span>
+
+            </li>
+        </ul>
+    </div>
+    <div class="mostrar-landscape" style="width: 50%">
+        <iframe id="map-seleccionado" src="https://www.google.com/maps/d/embed?mid=1SID7QdfDWObUWMXQOsC6PyJM3FKPEW9K"></iframe>
+    </div>
+
+
+    <!-- <div class="card shadow mt-3 bg-white rounded" id="games-table">
+      <div class="card-body" id="card-body-index">
+        <table class="table table-hover" id="schedule-table">
+          <thead class="thead-light">
+            <tr>
+              <th>Date</th>
+              <th>Match</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div> -->
+  </div>
+
+
+  <!--content scripts-->
+  <script src="gradient.js"></script>
+  <script src="main.js"></script>
+  <script src="gameinfo.js"></script>
+  <!--jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <!--popper-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!--bootstrap-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <!--vue js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+</body>
+
+</html>

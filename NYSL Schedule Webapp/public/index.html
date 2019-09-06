@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/541a4d8008.js"></script>
+  <link rel="stylesheet" href="main.css">
+  <link rel="shortcut icon" href="img/nysl_logo.png">
+  <link rel="apple-touch-icon" href="img/nysl_logo.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable"content="yes">
+  <title>Homepage | Northside Youth Soccer League</title>
+  <!-- firebase version number -->
+  <script defer src="/__/firebase/6.2.4/firebase-app.js"></script>
+  <!-- firebase features -->
+  <script defer src="/__/firebase/6.2.4/firebase-auth.js"></script>
+  <script defer src="/__/firebase/6.2.4/firebase-database.js"></script>
+  <script defer src="/__/firebase/6.2.4/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/6.2.4/firebase-storage.js"></script>
+  <!-- firebase SDK -->
+  <script defer src="/__/firebase/init.js"></script>
+</head>
+
+<body>
+  <div class="d-flex flex-column" id="container-top">
+
+    <div id="gradient">
+      <h1>Northside Youth Soccer League</h1>
+    </div>
+
+    <div>
+      <nav class="navbar navbar-expand-md navbar-light" id="navigation">
+        <button class="navbar-toggler float-left" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Homepage <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="schedule.html">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <img src="img/nysl_logo.png" width="100" height="100" alt="icon" id="logo">
+      </nav>
+    </div>
+
+  </div>
+
+
+  <div class="container" id="container-bottom">
+
+    <h3>About Us</h3>
+    <div class="card shadow p-1 mb-5 bg-white rounded" id="card-one">
+      <div class="card-body" id="card-body-index">
+        <h5><b>Mission</b></h5>
+        <p>To support young athletes living in Chicago's northside neighborhoods, who have an interest in learning and
+          playing soccer, with opportunities to learn and practice skills related to the game of soccer, specifically
+          those skills around team cooperation and good sportsmanship.</p>
+
+        <button class="btn collapsed btn-outline-info w-20" type="button" data-toggle="collapse" data-target="#collapse"
+          aria-expanded="false" aria-controls="collapse">Read More</button>
+        <div class="collapse card-body-collapse" aria-labelledby="heading" id="collapse">
+          <div class="card-body-more" id="card-body-more-index">
+            <br>
+            <h5><b>Vision</b></h5>
+            <p>The Northside Youth League aspires to develop strong, well-rounded, and mindful athletes through the
+              building of character, self-discipline, and leadership.</p>
+
+            <h5><b>General Information</b></h5>
+            <p>The Northside Youth Soccer League was established in 1996 to provide athletes residing in Chicago's
+              northside neighborhoods and environment in which to learn and play soccer. To be a member of NYSL, you
+              must be between the ages of 4 - 12 and reside in a Chicago northside neighborhood. NYSL is ran by a small
+              full-time staff, and relies on the generous volunteer time of parents and previous league members.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Upcoming Events</h3>
+    <div class="card-deck">
+      <div class="card shadow bg-white rounded">
+        <img class="card-img-top" src="img/design1.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">August 4</h5>
+          <p class="card-text">NYSL Fundraiser</p>
+          <p class="card-text"><small class="text-muted">Last updated just now</small></p>
+        </div>
+      </div>
+      <div class="card shadow bg-white rounded">
+        <img class="card-img-top" src="img/design2.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">August 16</h5>
+          <p class="card-text">Season Kick-off: Meet the Teams</p>
+          <p class="card-text"><small class="text-muted">Last updated just now</small></p>
+        </div>
+      </div>
+      <div class="card shadow bg-white rounded">
+        <img class="card-img-top" src="img/design2.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">September 1</h5>
+          <p class="card-text">First Game of the Season (Check Game Schedule for details)</p>
+          <p class="card-text"><small class="text-muted">Last updated just now</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--content scripts-->
+  <script src="gradient.js"></script>
+  <!--firebase script-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        let app = firebase.app();
+        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] ===
+          'function');
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  </script>
+  <!--jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <!--popper-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!--bootstrap-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <!--vue js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+</body>
+
+</html>
