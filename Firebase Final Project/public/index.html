@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Northside Youth Soccer League</title>
+  <!--vue + jquery scripts-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <!-- firebase version number -->
+  <script defer src="/__/firebase/6.4.0/firebase-app.js"></script>
+  <!-- firebase features -->
+  <script defer src="/__/firebase/6.4.0/firebase-auth.js"></script>
+  <script defer src="/__/firebase/6.4.0/firebase-database.js"></script>
+  <script defer src="/__/firebase/6.4.0/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/6.4.0/firebase-storage.js"></script>
+  <!-- firebase sdk -->
+  <script defer src="/__/firebase/init.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+
+    <!--navbar------------------------------------------------------------------------>
+    <div class="d-flex flex-column" id="container-top">
+
+      <!--title---------------------------------------------------------------------->
+      <div class="flex-item" id="gradient">
+        <h1>Northside Youth Soccer League</h1>
+      </div>
+
+      <!--navbar--------------------------------------------------------------------->
+      <div class="flex-item mostrar-portrait">
+        <nav class="navbar navbar-expand-md navbar-light shadow" id="navigation">
+          <div class="btn-group">
+            <button class="navbar-toggler mr-4" id="menu-button" type="button" data-toggle="collapse"
+              data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <button class="navbar-toggler" id="homepage-button" type="button" v-on:click="switchPage('Index')">
+              <svg id="i-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none"
+                stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M12 20 L12 30 4 30 4 12 16 2 28 12 28 30 20 30 20 20 Z" />
+              </svg>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" v-on:click="switchPage('Index')">Homepage</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" v-on:click="switchPage('Schedule')">Schedule</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" v-on:click="switchPage('GIT')">Get in Touch</a>
+              </li>
+            </ul>
+          </div>
+          <img src="img/logo.png" width="80" height="80" alt="icon" id="logo">
+        </nav>
+      </div>
+
+      <div class="flex-item mostrar-landscape">
+        <nav class="navbar navbar-expand-md navbar-light shadow" id="navigation">
+          <div class="btn-group">
+            <button class="navbar-toggler mr-4" id="homepage-button" type="button" v-on:click="switchPage('Index')">
+              <svg id="i-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none"
+                stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M12 20 L12 30 4 30 4 12 16 2 28 12 28 30 20 30 20 20 Z" />
+              </svg>
+            </button>
+            <button class="navbar-toggler mr-4" id="homepage-button" type="button" v-on:click="switchPage('Schedule')">
+              <svg id="i-calendar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"
+                fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9" />
+              </svg>
+            </button>
+            <button class="navbar-toggler" id="homepage-button" type="button" v-on:click="switchPage('GIT')">
+              <svg id="i-msg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none"
+                stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M2 4 L30 4 30 22 16 22 8 29 8 22 2 22 Z" />
+              </svg>
+            </button>
+          </div>
+          <img src="img/logo.png" width="80" height="80" alt="icon" id="logo">
+        </nav>
+      </div>
+    </div>
+
+    <!--pages------------------------------------------------------------------------->
+    <div id="pages">
+
+      <!--home page------------------------------------------------------------------->
+      <div class="container" id="homepage-container" v-if="page == 'Index'">
+
+        <!--events------------------------------------------------------------------------>
+        <h3>Upcoming Events<span class="title-background1"></span></h3>
+        <div class="card-deck mb-5">
+          <div class="card bg-white rounded shadow">
+            <img class="card-img-top" src="img/cmd.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">August 14</h5>
+              <p class="card-text">NYSL Webapp presentation</p>
+              <p class="card-text">
+                <svg id="i-location" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20"
+                  fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                  <circle cx="16" cy="11" r="4" />
+                  <path d="M24 15 C21 22 16 30 16 30 16 30 11 22 8 15 5 8 10 2 16 2 22 2 27 8 24 15 Z" />
+                </svg> <a href="https://goo.gl/maps/bBVbYDxMXrCHP4929">Centro Metropolitano de Diseño</a>
+              </p>
+            </div>
+          </div>
+          <div class="card bg-white rounded shadow">
+            <img class="card-img-top" src="img/design2.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">August 16</h5>
+              <p class="card-text">Season Kick-off: Meet the Teams</p>
+            </div>
+          </div>
+          <div class="card bg-white rounded shadow">
+            <img class="card-img-top" src="img/design2.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">September 1</h5>
+              <p class="card-text">First Game of the Season (Check Game Schedule for details)</p>
+            </div>
+          </div>
+        </div>
+
+        <!--about----------------------------------------------------------------------->
+        <h3>About Us<span class="title-background2"></span></h3>
+        <div class="card p-1 mb-4 bg-white rounded shadow">
+          <div class="card-body">
+            <h5><b>Mission</b></h5>
+            <p>To support young athletes living in Chicago's northside neighborhoods, who have an interest in learning
+              and playing soccer, with opportunities to learn and practice skills related to the game of soccer,
+              specifically those skills around team cooperation and good sportsmanship.</p>
+
+            <button class="btn collapsed btn-outline-info" type="button" data-toggle="collapse" data-target="#collapse"
+              aria-expanded="false" aria-controls="collapse">Read More</button>
+            <div class="collapse" aria-labelledby="heading" id="collapse">
+              <div>
+                <br>
+                <h5><b>Vision</b></h5>
+                <p>The Northside Youth League aspires to develop strong, well-rounded, and mindful athletes through the
+                  building of character, self-discipline, and leadership.</p>
+
+                <h5><b>General Information</b></h5>
+                <p>The Northside Youth Soccer League was established in 1996 to provide athletes residing in Chicago's
+                  northside neighborhoods an environment in which to learn and play soccer. To be a member of NYSL, you
+                  must be between the ages of 4 - 12 and reside in a Chicago northside neighborhood. NYSL is ran by a
+                  small full-time staff, and relies on the generous volunteer time of parents and previous league
+                  members.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--schedule page--------------------------------------------------------------->
+      <div class="container-flex" id="schedule-container" v-show="page == 'Schedule'">
+        <div class="container">
+          <h3>Game Schedule<span class="title-background3"></span></h3>
+          <p class="mb-4">Stay updated with the latest information and read the posts that matter to you the most.</p>
+
+          <!--filters-------------------------------------------------------------------->
+          <div>
+            <div class="btn-group" id="month-filter">
+              <button class="btn btn-outline-dark dropdown-toggle mr-2" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i v-for="mes in meses"
+                  v-show="mes.numero == mesSeleccionado">{{mes.nombre}} </i></button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" v-for="mes in meses"
+                  v-on:click="filtrarPartidos(mes.numero, teamSeleccionado)">{{mes.nombre}}</a>
+              </div>
+            </div>
+            <div class="btn-group" id="team-filter">
+              <button class="btn btn-outline-dark dropdown-toggle mr-2" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                  v-if="teamSeleccionado == 'All'">All</i><i v-else-if v-for="nombre in teams"
+                  v-if="nombre.name == teamSeleccionado">{{nombre.name}} </i></button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" v-on:click="filtrarPartidos( mesSeleccionado, 'All')">All</a>
+                <a class="dropdown-item" v-for="nombre in teams"
+                  v-on:click="filtrarPartidos(mesSeleccionado, nombre.name)">{{nombre.name}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--table---------------------------------------------------------------------->
+        <div class="d-flex flex-row bg-white rounded shadow ml-3 mr-3 mb-4" v-if="partidos.length !== 0">
+          <table class="table table-hover" id="tabla-partidos">
+            <thead class="thead thead-dark">
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Time</th>
+                <th scope="col">Match</th>
+                <th scope="col" class="mostrar-landscape">Forum</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template v-for="(partido, index) in partidos">
+                <tr>
+                  <td><span>{{partido.mes + '/' + partido.dia}}</span></td>
+                  <td><span>{{partido.horario}}</span></td>
+                  <td><span>{{partido.nombre1 + ' v ' + partido.nombre2}}</span></td>
+                  <td class="mostrar-landscape"><span>
+                      <button class="btn btn-info btn-sm btn-block" type="button"
+                        v-on:click="mostrarChat(partido.match_id)">Posts</button>
+                      <a class="btn btn-outline-success btn-sm btn-block" data-action="share/whatsapp/share\"
+                        v-bind:href="'whatsapp://send?text=Game info: Date:' + partido.mes +'/'+partido.dia+ 'at'+ partido.horario +  '/ Teams:' + partido.nombre1 + 'vs' + partido.nombre2 + '/ Place:' + partido.lugar + ' Elementary / Address: ' + partido.url">Share</a>
+                    </span>
+                  </td>
+                  <td><span>
+                      <button class="btn btn-success btn-sm btn-block active m-0 mostrar-portrait" role="button"
+                        aria-pressed="true" v-on:click="desplegar(partido.match_id)"
+                        id="btn-maps">{{partido.lugar}}</button>
+                      <button class="btn btn-success btn-block active m-0 mostrar-landscape btn-estadio-class"
+                        role="button" aria-pressed="true" v-bind:id="'btn-estadio' + index"
+                        v-on:click="seleccionarEstadio(partido.url, index)">{{partido.lugar}}</button>
+                    </span>
+                  </td>
+                </tr>
+                <tr class="mostrar-portrait" v-show="partido.match_id == match_id">
+                  <td class="p-1" colspan="1">
+                    <button class="btn btn-info btn-block p-2 m-0" type="button"
+                      v-on:click="mostrarChat(partido.match_id)">Posts</button>
+                    <a class="btn btn-outline-success btn-block p-2" data-action="share/whatsapp/share\"
+                      v-bind:href="'whatsapp://send?text=Game info: Date:' + partido.mes +'/'+partido.dia+ 'at'+ partido.horario +  '/ Teams:' + partido.nombre1 + 'vs' + partido.nombre2 + '/ Place:' + partido.lugar + ' Elementary / Address: ' + partido.url">Share</a>
+                  </td>
+                  <td colspan="3">
+                    <iframe class="border-0 rounded shadow" width="100%" :src="partido.url"></iframe>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+
+          <div class="d-flex flex-row" id="landscape-map">
+            <table class="table mostrar-landscape">
+              <thead class="thead thead-dark">
+                <tr>
+                  <th scope="col" class="mostrar-landscape">Map</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <iframe class="border-0 rounded shadow" id="map-seleccionado"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.291914658434!2d-87.64808628468606!3d41.9295782792181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd30f2630e551%3A0x3e719e44a5cef714!2s2625+N+Orchard+St%2C+Chicago%2C+IL+60614%2C+USA!5e0!3m2!1sen!2sar!4v1554220630456!5m2!1sen!2sar"></iframe>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row bg-white rounded shadow ml-3 mr-3 mb-4" v-else>
+          <table class="table table-hover" id="tabla-partidos">
+            <thead class="thead thead-dark">
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Time</th>
+                <th scope="col">Match</th>
+                <th scope="col" class="mostrar-landscape">Forum</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="4">No results to show.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!--contact-------------------------------------------------------------------->
+        <!-- <div class="d-flex flex-row">
+              <div class="fixed-action-btn">
+                <button type="button" class="btn btn-info">
+                  <i class="material-icons">contact_mail</i>
+                </button>
+              </div>
+            </div> -->
+      </div>
+
+      <!--get in touch page----------------------------------------------------------->
+      <div class="container" id="contact-container" v-show="page == 'GIT'">
+        <h3>Hey there!<span class="title-background4"></span></h3>
+        <p class="mb-3">Whether you're looking to get in touch with the league or wanna leave a comment,
+          contact us.</p>
+        <p class="mb-4"><b>Fill up the following form and we will reach out to you ASAP:</b></p>
+        <div class="card shadow p-4 bg-white rounded" id="contact2">
+          <div id="form" v-show="!formEnviado">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="inputName">First Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="First name" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputName">Last Name</label>
+                <input type="text" class="form-control" id="surname" name="surname" placeholder="Last name" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputEmail">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="inputZip">Comments</label>
+                <textarea type="text" class="form-control" id="comments" name="comments" rows="3" required></textarea>
+              </div>
+            </div>
+            <button v-on:click="formEnviado = true" class="btn btn-info">Submit</button>
+          </div>
+          <div v-show="formEnviado">
+            <span class="">We have recieved your message. Thank you!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--chat-------------------------------------------------------------------------->
+    <div class="container">
+      <div id="matchForum" class="overflow-auto"></div>
+      <div class="container" v-show="page == 'matchFocus'">
+
+        <!--login-------------------------------------------------------------------------->
+        <div class="card rounded shadow" v-show="!logged">
+          <div class="card-header">Forum</div>
+          <div class="card-body">
+            <h5 class="card-title mb-4">Sign in to read, create or comment on posts.</h5>
+            <p class="card-text">Get updated on the latest news about games, schedule and general information.</p>
+            <div class="d-flex flex-row m-2">
+              <button class="btn btn-info btn-block m-1" id="sign-in-button"><img src="img/google-logo.png" class="mr-2"
+                  width="20px">Sign in with Google</button>
+              <button class="btn btn-warning btn-block m-1" v-on:click="volverAtras()">Back</button>
+            </div>
+          </div>
+        </div>
+
+        <!--logged in-------------------------------------------------------------------------->
+        <div v-show="logged">
+
+          <!--new post-------------------------------------------------------------------------->
+          <div class="card rounded shadow mb-4">
+            <div class="card-header">Write New Post</div>
+            <div class="card-body">
+              <div id="new-post-collapse" class="collapse">
+                <div class="info">
+                  <input class="form-control mb-2" type="text" id="new-post-title" placeholder="Title">
+                  <textarea class="form-control mb-2" placeholder="Content" rows="3" id="new-post-message"></textarea>
+                  <button class="btn btn-outline-success btn-sm mt-2 mb-2" id="add-post-button"
+                    onclick="postComment()">Post Now</button>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm btn-block mt-2" data-toggle="collapse"
+                data-target="#new-post-collapse" id="new-post-collapse-trigger">Compose</button>
+            </div>
+          </div>
+
+          <!--latest post-------------------------------------------------------------------------->
+          <div class="card rounded shadow mb-4">
+            <div class="card-header">Latest Posts</div>
+
+            <!--latest posts-------------------------------------------------------------------------->
+            <div class="card-body">
+              <div v-show="forumPosts.length !== 0">
+                <section id="recent-posts-list">
+                  <div class="posts-container">
+                    <div class="info post" v-for="post in forumPosts" v-bind:class="'post-'+post.key">
+                      <p class="username font-italic mt-2" id="post-author-divider"><u>{{post.author}}</u></p>
+                      <h5 class="title-text">{{post.title}}</h5>
+                      <p class="text mb-2">{{post.body}}</p>
+                      <button class="btn btn-info btn-sm mb-2" data-toggle="collapse"
+                        :data-target="'#commentsCollapse-'+post.key"><u>Show/Hide Comments
+                          ({{post.comments.length}})</u>
+                      </button>
+
+                      <!--comments-------------------------------------------------------------------------->
+                      <div class="collapse mt-2 mb-2" :id="'commentsCollapse-'+post.key">
+                        <div v-if="post.comments.length !== 0">
+                          <div class="" v-for="com in post.comments">
+                            <h6 class="text-left small"><u>{{com.author}}</u></h6>
+                            <p class="text-left">{{com.text}}</p>
+                          </div>
+                        </div>
+
+                        <!--no comments-------------------------------------------------------------------------->
+                        <div v-else>
+                          <p class="font-italic">There are no comments for this post.</p>
+                        </div>
+
+                        <!--add comments-------------------------------------------------------------------------->
+                        <div class="mb-4">
+                          <input :id="'comm-input-'+post.key" type="text" name="commContent"
+                            placeholder="Write a comment">
+                          <button class="btn btn-outline-info btn-sm" v-on:click="funcCom(post.key)">Add
+                            Comment</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <!--no posts-------------------------------------------------------------------------->
+              <div v-show="forumPosts.length === 0">
+                <h6 class="font-bold mb-2">There are no posts for this match.</h6>
+                <h6 class="font-italic">Why don't you start a new post now?</h6>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-danger btn-block mb-4" id="sign-out-button">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--content scripts-->
+  <script src="gradient.js"></script>
+  <script src="partidos.js"></script>
+  <script src="chat.js"></script>
+  <script src="main.js"></script>
+  <!--jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <!--popper-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!--bootstrap-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <!--vue js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+  <!--firebase-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        let app = firebase.app();
+        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] ===
+          'function');
+        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+      } catch (e) {
+        console.error(e);
+        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+      }
+    });
+  </script>
+</body>
+
+</html>

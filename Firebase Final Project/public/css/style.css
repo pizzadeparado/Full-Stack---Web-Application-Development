@@ -1,0 +1,173 @@
+/********** top part of the page **********/
+#container-top {
+  background-color: antiquewhite;
+  padding: 0px;
+  margin-bottom: 50px;
+}
+
+#gradient {
+  width: 100%;
+  height: 150px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#navigation {
+  background-color: antiquewhite;
+}
+
+#logo {
+  position: absolute;
+  right: 20px;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
+  text-align: left;
+  color: white;
+  font-size: 38px;
+  margin: 20px;
+}
+
+h3 {
+  /* position: relative; */
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* .title-background1 {
+  position: absolute;
+  z-index: -1;
+  background-color: yellow;
+  width: 230px;
+  height: 25px;
+  top: 10px;
+  left: 5px;
+  right: 0;
+}
+
+.title-background2 {
+  position: absolute;
+  z-index: -1;
+  background-color: yellow;
+  width: 120px;
+  height: 25px;
+  top: 10px;
+  left: 5px;
+  right: 0;
+}
+
+.title-background3 {
+  position: absolute;
+  z-index: -1;
+  background-color: yellow;
+  width: 205px;
+  height: 25px;
+  top: 10px;
+  left: 5px;
+  right: 0;
+}
+
+.title-background4 {
+  position: absolute;
+  z-index: -1;
+  background-color: yellow;
+  width: 135px;
+  height: 25px;
+  top: 10px;
+  left: 5px;
+  right: 0;
+} */
+
+h5 {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+#post-author-divider {
+  background-color: yellow;
+}
+
+
+/********** bottom part of the page **********/
+.container {
+  margin-bottom: 25px;
+}
+
+/* #table {
+  margin: 10px;
+} */
+
+/* .table thead th {
+  border-bottom: 0px;
+} */
+
+.table td {
+  vertical-align: middle;
+}
+
+#card-schedule {
+  padding-top: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+
+/********** portrait/landscape style **********/
+@media only screen and (orientation: Portrait) {
+  .mostrar-portrait {
+    display: table-row;
+  }
+
+  .mostrar-landscape {
+    display: none;
+  }
+
+  .table {
+    height: 100%;
+    margin: 0px;
+  }
+
+  /* #tabla-partidos {
+    margin: 0px;
+  } */
+}
+
+@media only screen and (orientation: Landscape) {
+  #gradient {
+    height: 120px;
+  }
+  
+  h1 {
+    margin: 30px;
+    text-align: center;
+  }
+
+  .navbar .btn-group {
+    margin-left: 60px;
+  }
+
+  .mostrar-portrait {
+    display: none;
+  }
+
+  .table {
+    height: 100%;
+    margin: 0px;
+  }
+
+  #tabla-partidos {
+    width: 50%;
+  }
+
+  #map-seleccionado {
+    width: 100%;
+    height: 100%;
+  }
+
+  #landscape-map {
+    width: 40%;
+  }
+}
